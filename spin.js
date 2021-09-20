@@ -152,10 +152,10 @@
   , length: 7             // The length of each line
   , width: 5              // The line thickness
   , radius: 10            // The radius of the inner circle
-  , scale: 3.0            // Scales overall size of the spinner
+  , scale: 1.0            // Scales overall size of the spinner
   , corners: 1            // Roundness (0..1)
   , color: '#000'         // #rgb or #rrggbb
-  , opacity: 1/4          // Opacity of the lines
+  , opacity: 1/8          // Opacity of the lines
   , rotate: 0             // Rotation offset
   , direction: 1          // 1: clockwise, -1: counterclockwise
   , speed: 1              // Rounds per second

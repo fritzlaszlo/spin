@@ -1,15 +1,35 @@
 // INIT
 let opts = {
  lines: 13, //ANIMATE
- length: 28, //ANIMATE
- width: 4, //ANIMATE
- radius: 2, //ANIMATE
+ length: 40, //ANIMATE
+ width: 20, //ANIMATE
+ radius: 80, //ANIMATE
  corners: 1 //ANIMATE
 },
  target = document.getElementById('spinner'),
  spinner = new Spinner(opts).spin(target),
- animationIntervalmin = 150;
+ lastoptnr = 0;
+console.log('First spinner initiated');
 
+// zeitmultiplikator abfragen
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
+var timemultiplicator = getUrlParam('multi','1');
+animationIntervalmin = (60000 * timemultiplicator), // 1 Minute = 60000 , 2 min = 120000, 5min = 30000
+IdleIntervalmin = (30000 * timemultiplicator);
 
 // Updates spin on every iteration, animations do not need to call update
 
@@ -25,139 +45,200 @@ update();
 
 // does single value animation, 5 times because too lazy to multi thread 
 function singleValueAnimation(optvalue, valcurrent, valtarget, animationtime, callback) {
+  // Animation berechnen
   let id = null;
   let changevalue = valcurrent;
-  let diff = 0
+  let diff = 0;
   if (changevalue < valtarget) {diff = valtarget - changevalue;}
   else {diff = changevalue - valtarget;};
   let animationsteps = animationtime / diff;
+  // Animation Starten
   clearInterval(id);
   id = setInterval(frame, animationsteps);
+  // Animation Loop till target readhed
   function frame() {
     if (changevalue == valtarget) {
       clearInterval(id);
       callback();
-    } else {
-      if (changevalue < valtarget) {changevalue++;}
-      else {changevalue--;};
+    } 
+    else {
+      // count down oder up
+      if (changevalue < valtarget) {changevalue++; console.log('step ' + optvalue + ' ++');}
+      else {changevalue--; console.log('step ' + optvalue + ' --');};
+      // value change
       opts[optvalue] = changevalue;
     }
   }
 }
 
 function singleValueAnimation2(optvalue, valcurrent, valtarget, animationtime, callback) {
+  // Animation berechnen
   let id = null;
   let changevalue = valcurrent;
-  let diff = 0
+  let diff = 0;
   if (changevalue < valtarget) {diff = valtarget - changevalue;}
   else {diff = changevalue - valtarget;};
   let animationsteps = animationtime / diff;
+  // Animation Starten
   clearInterval(id);
   id = setInterval(frame, animationsteps);
+  // Animation Loop till target readhed
   function frame() {
     if (changevalue == valtarget) {
       clearInterval(id);
       callback();
-    } else {
-      if (changevalue < valtarget) {changevalue++;}
-      else {changevalue--;};
+    } 
+    else {
+      // count down oder up
+      if (changevalue < valtarget) {changevalue++; console.log('step ' + optvalue + ' ++');}
+      else {changevalue--; console.log('step ' + optvalue + ' --');};
+      // value change
       opts[optvalue] = changevalue;
     }
   }
 }
 
 function singleValueAnimation3(optvalue, valcurrent, valtarget, animationtime, callback) {
+  // Animation berechnen
   let id = null;
   let changevalue = valcurrent;
-  let diff = 0
+  let diff = 0;
   if (changevalue < valtarget) {diff = valtarget - changevalue;}
   else {diff = changevalue - valtarget;};
   let animationsteps = animationtime / diff;
+  // Animation Starten
   clearInterval(id);
   id = setInterval(frame, animationsteps);
+  // Animation Loop till target readhed
   function frame() {
     if (changevalue == valtarget) {
       clearInterval(id);
       callback();
-    } else {
-      if (changevalue < valtarget) {changevalue++;}
-      else {changevalue--;};
+    } 
+    else {
+      // count down oder up
+      if (changevalue < valtarget) {changevalue++; console.log('step ' + optvalue + ' ++');}
+      else {changevalue--; console.log('step ' + optvalue + ' --');};
+      // value change
       opts[optvalue] = changevalue;
     }
   }
 }
 
 function singleValueAnimation4(optvalue, valcurrent, valtarget, animationtime, callback) {
+  // Animation berechnen
   let id = null;
   let changevalue = valcurrent;
-  let diff = 0
+  let diff = 0;
   if (changevalue < valtarget) {diff = valtarget - changevalue;}
   else {diff = changevalue - valtarget;};
   let animationsteps = animationtime / diff;
+  // Animation Starten
   clearInterval(id);
   id = setInterval(frame, animationsteps);
+  // Animation Loop till target readhed
   function frame() {
     if (changevalue == valtarget) {
       clearInterval(id);
       callback();
-    } else {
-      if (changevalue < valtarget) {changevalue++;}
-      else {changevalue--;};
+    } 
+    else {
+      // count down oder up
+      if (changevalue < valtarget) {changevalue++; console.log('step ' + optvalue + ' ++');}
+      else {changevalue--; console.log('step ' + optvalue + ' --');};
+      // value change
       opts[optvalue] = changevalue;
     }
   }
 }
+/*
+Corners von 0 auf 100 animieren !!!!!!
+
+*/
 
 function singleValueAnimation5(optvalue, valcurrent, valtarget, animationtime, callback) {
+  // Animation berechnen
   let id = null;
   let changevalue = valcurrent;
-  let diff = 0
+  let diff = 0;
   if (changevalue < valtarget) {diff = valtarget - changevalue;}
   else {diff = changevalue - valtarget;};
   let animationsteps = animationtime / diff;
+  // Animation Starten
   clearInterval(id);
   id = setInterval(frame, animationsteps);
+  // Animation Loop till target reached
   function frame() {
     if (changevalue == valtarget) {
       clearInterval(id);
       callback();
-    } else {
-      if (changevalue < valtarget) {changevalue++;}
-      else {changevalue--;};
+    } 
+    else {
+      // count down oder up
+      if (changevalue < valtarget) {changevalue++; console.log('step ' + optvalue + ' ++');}
+      else {changevalue--; console.log('step ' + optvalue + ' --');};
+      // value change
       opts[optvalue] = changevalue;
     }
   }
 }
 
 
-// different spinner values
-let opts2 = {
- lines: 2, //ANIMATE
- length: 8, //ANIMATE
- width: 60, //ANIMATE
- radius: 10, //ANIMATE
- corners: 0 //ANIMATE
+// different spinner models
+let opts0 = {
+ lines: 13, //ANIMATE
+ length: 40, //ANIMATE
+ width: 20, //ANIMATE
+ radius: 80, //ANIMATE
+ corners: 1 //ANIMATE
 };
 
 let opts1 = {
- lines: 13, //ANIMATE
- length: 28, //ANIMATE
- width: 4, //ANIMATE
- radius: 2, //ANIMATE
+ lines: 20, //ANIMATE
+ length: 0, //ANIMATE
+ width: 52, //ANIMATE
+ radius: 74, //ANIMATE
  corners: 1 //ANIMATE
 };
 
+
+var opts2 = {
+ lines: 17, //ANIMATE
+ length: 80, //ANIMATE
+ width: 2, //ANIMATE
+ radius: 42, //ANIMATE
+ corners: 0 //ANIMATE
+}
+
+
 let opts3 = {
- lines: 6, //ANIMATE
- length: 2, //ANIMATE
- width: 10, //ANIMATE
- radius: 30, //ANIMATE
- corners: 1 //ANIMATE
+ lines: 18, //ANIMATE
+ length: 0, //ANIMATE
+ width: 22, //ANIMATE
+ radius: 84, //ANIMATE
+ corners: 0 //ANIMATE
+}
+
+let opts4 = {
+  lines: 8,
+  length: 0,
+  width: 22,
+  radius: 27,
+  corners: 1
+}
+
+let opts5 = {
+  lines: 9,
+  length: 0,
+  width: 52,
+  radius: 0,
+  corners: 1
 }
 
 // multiple value animation
 function morph(optsnew, animationtime, callback2) {
       let waitnum = 0;
+      console.log('Morpn initiated ' + (animationtime/1000) + 's');
       singleValueAnimation('lines', opts.lines, optsnew.lines, animationtime, function() {
         console.log('ready lines'); waitnum++; 
       });
@@ -179,23 +260,28 @@ function morph(optsnew, animationtime, callback2) {
       }
 };
 
-// selection process
+// random selection process
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
-//selectnewopt();
+// random idle process
 
+
+// nächstes form auswählen und morph anstoßen;
+selectnewopt();
 function selectnewopt() {
-  let newoptnr = getRandomInt(1,2);
+  // Keep Max here up do todate with amount of Spinners +1
+  let newoptnr = getRandomInt(6);
+  if (newoptnr == lastoptnr) {
+    let newoptnr = getRandomInt(6);
+  }
   let newoptname = 'opts' + newoptnr;
   console.log(newoptname);
-
-  morph(newoptname, function() {
-    console.log('alldone');
-    selectnewopt();
+  morph(eval(newoptname), animationIntervalmin, function() {
+    console.log('Morph finished');
+    console.log('Idling for ' + (IdleIntervalmin/1000) + 's');
+    setTimeout(function(){ selectnewopt(); }, IdleIntervalmin);
   });
 };
